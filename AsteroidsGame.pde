@@ -1,9 +1,11 @@
 Spaceship a;
 ArrayList<Asteroids> b= new ArrayList();
  Star[] s= new Star[200];
+ArrayList<Bullets> c= new ArrayList();
 void setup(){
  size(500,500); 
  a=new Spaceship();
+ c.add(new Bullets(a));
  for(int i=0;i<15;i++){
   b.add(new Asteroids());
  }
@@ -18,16 +20,32 @@ void draw(){
   }
   a.show();
   a.move(); 
-   for(int i=0;i<15;i++){
-     b.get(i).amove();
-     b.get(i).show();
+  for(int i=0;i<c.size()-1;i++){
+     c.get(i).move();
+     c.get(i).show();
+     for(int j=0;j<b.size()-1;j++){
+       if((dist((float)c.get(i).myCenterX,(float)c.get(i).myCenterY,(float)b.get(j).myCenterX,(float)b.get(j).myCenterY)<20)){
+         b.remove(j);
+         c.remove(i);
+     //b.add(new Asteroids());
+   }
+     }
      
   }
-  for(int i=0;i<15;i++){
+   for(int i=0;i<b.size();i++){
+     b.get(i).amove();
+     b.get(i).show();   
+  }
+  for(int i=0;i<b.size();i++){
    if((dist((float)a.myCenterX,(float)a.myCenterY,(float)b.get(i).myCenterX,(float)b.get(i).myCenterY)<20)){
      b.remove(i);
-     b.add(new Asteroids());
+     //b.add(new Asteroids());
    }
+  }
+  if(b.size()==0){
+    fill(255,255,0);
+    textSize(100);
+    text("You won",200,200);
   }
   }
  public void keyPressed(){
@@ -42,5 +60,8 @@ void draw(){
    }
    if(key=='w'){
     a.speed(1); 
+   }
+   if(key==' '){
+    c.add(new Bullets(a));
    }
  }
