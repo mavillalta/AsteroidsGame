@@ -42,11 +42,7 @@ void draw(){
      //b.add(new Asteroids());
    }
   }
-  if(b.size()==0){
-    fill(255,255,0);
-    textSize(100);
-    text("You won",200,200);
-  }
+ 
   }
  public void keyPressed(){
    if(key=='h'){
