@@ -1,11 +1,11 @@
 Spaceship a;
 ArrayList<Asteroids> b= new ArrayList();
  Star[] s= new Star[200];
-ArrayList<Bullets> c= new ArrayList();
+//ArrayList<Bullets> c= new ArrayList();
 void setup(){
  size(500,500); 
  a=new Spaceship();
- c.add(new Bullets(a));
+ //c.add(new Bullets(a));
  for(int i=0;i<15;i++){
   b.add(new Asteroids());
  }
@@ -20,15 +20,7 @@ void draw(){
   }
   a.show();
   a.move(); 
-  for(int i=0;i<c.size()-1;i++){
-     c.get(i).move();
-     c.get(i).show();
-     for(int j=0;j<b.size()-1;j++){
-       if((dist((float)c.get(i).myCenterX,(float)c.get(i).myCenterY,(float)b.get(j).myCenterX,(float)b.get(j).myCenterY)<20)){
-         b.remove(j);
-         c.remove(i);
-     //b.add(new Asteroids());
-   }
+ 
      }
      
   }
