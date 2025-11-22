@@ -49,7 +49,7 @@ void draw(){
    if(key=='w'){
     a.speed(1); 
    }
-   if(key==' '){
-    c.add(new Bullets(a));
-   }
+  // if(key==' '){
+  //  c.add(new Bullets(a));
+  // }
  }
