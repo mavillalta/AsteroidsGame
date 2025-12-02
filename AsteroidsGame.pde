@@ -20,8 +20,6 @@ void draw(){
   }
   a.show();
   a.move(); 
- 
-     }
      
    for(int i=0;i<b.size();i++){
      b.get(i).amove();
