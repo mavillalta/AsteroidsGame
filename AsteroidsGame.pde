@@ -36,7 +36,7 @@ void draw(){
   }
  
   }
- public void keyPressed(){
+void keyPressed(){
    if(key=='h'){
      a.hyperspace(); 
    }
