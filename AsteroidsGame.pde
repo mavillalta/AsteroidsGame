@@ -1,11 +1,11 @@
 Spaceship a;
 ArrayList<Asteroids> b= new ArrayList();
  Star[] s= new Star[200];
-//ArrayList<Bullets> c= new ArrayList();
+ArrayList<Bullets> c= new ArrayList();
 void setup(){
  size(500,500); 
  a=new Spaceship();
- //c.add(new Bullets(a));
+ c.add(new Bullets(a));
  for(int i=0;i<15;i++){
   b.add(new Asteroids());
  }
@@ -20,10 +20,26 @@ void draw(){
   }
   a.show();
   a.move(); 
+  for(int i=0;i<c.size();i++){
+     c.get(i).move();
+     c.get(i).show();
+     for(int j=0;j<b.size();j++){
+       if((dist((float)c.get(i).myCenterX,(float)c.get(i).myCenterY,(float)b.get(j).myCenterX,(float)b.get(j).myCenterY)<20)){
+         b.remove(j);
+         c.remove(i);
+         break;
+         
+     //b.add(new Asteroids());
+   }
+   
+     }
      
+  }
+  
    for(int i=0;i<b.size();i++){
      b.get(i).amove();
-     b.get(i).show();   
+     b.get(i).show();
+     
   }
   for(int i=0;i<b.size();i++){
    if((dist((float)a.myCenterX,(float)a.myCenterY,(float)b.get(i).myCenterX,(float)b.get(i).myCenterY)<20)){
@@ -31,9 +47,20 @@ void draw(){
      //b.add(new Asteroids());
    }
   }
- 
+  for(int i=0;i<c.size();i++){
+    if(c.get(i).life<=0)
+      c.remove(i);
+    
+    
   }
-void keyPressed(){
+  if(b.size()==0){
+    fill(255,255,0);
+    textSize(100);
+    text("You won",200,200);
+  }
+  }
+
+ public void keyPressed(){
    if(key=='h'){
      a.hyperspace(); 
    }
@@ -46,7 +73,7 @@ void keyPressed(){
    if(key=='w'){
     a.speed(1); 
    }
-  // if(key==' '){
-  //  c.add(new Bullets(a));
-  // }
+   if(key==' '){
+    c.add(new Bullets(a));
+   }
  }
